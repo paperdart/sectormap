@@ -56,24 +56,6 @@ export const HexCell: React.FC<HexCellProps> = ({ x, y, data, size, onClick }) =
           >
             {data.name}
           </text>
-          <text
-            x="0"
-            y="14"
-            textAnchor="middle"
-            fontSize="6"
-            fill="#003300"
-          >
-            {data.worldtype}
-          </text>
-          <text
-            x="0"
-            y="14"
-            textAnchor="middle"
-            fontSize="10"
-            fill="#003300"
-          >
-            {data.worldtype}
-          </text>
         </g>
       )}
     </g>

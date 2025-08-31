@@ -19,6 +19,7 @@ export const Hex: React.FC<HexProps> = ({ x, y, data }) => {
           ${isPopulated ? 'hover:shadow-green-500/50 hover:shadow-lg' : ''}
         `}
         title={data ? `${data.name} (${data.worldtype})` : `Empty space ${x},${y}`}
+        title={data ? `${data.name}` : `Empty space ${x},${y}`}
       >
         {/* Hex background */}
         <div className="hex-bg absolute inset-0"></div>
@@ -34,9 +35,6 @@ export const Hex: React.FC<HexProps> = ({ x, y, data }) => {
             <div className="mt-1">
               <div className="text-xs font-mono text-green-100 font-bold">
                 {data.name}
-              </div>
-              <div className="text-xs font-mono text-green-300">
-                {data.worldtype}
               </div>
               {data.population && (
                 <div className="text-xs font-mono text-green-400">

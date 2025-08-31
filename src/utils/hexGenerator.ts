@@ -25,8 +25,6 @@ export async function generateHexData(sector: string): Promise<Record<string, He
     worldTags = ['Trade Hub', 'Mining World', 'Agricultural', 'Industrial'];
   }
 
-  const worldTypes = ['Terran', 'Desert', 'Ocean', 'Ice', 'Volcanic', 'Gas Giant', 'Industrial', 'Agricultural'];
-
   // Generate data for 11x11 grid (1-9, A, B)
   const coords = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B'];
   
@@ -39,7 +37,6 @@ export async function generateHexData(sector: string): Promise<Record<string, He
       else if (rng.nextBoolean(0.2)) {
         const nameIndex = rng.nextInt(0, planetNames.length - 1);
         const suffix = rng.nextInt(1, 999);
-        const worldTypeIndex = rng.nextInt(0, worldTypes.length - 1);
         
         // Select 2 different world tags
         const tag1Index = rng.nextInt(0, worldTags.length - 1);
@@ -53,7 +50,6 @@ export async function generateHexData(sector: string): Promise<Record<string, He
           x,
           y,
           name: `${planetNames[nameIndex]}-${suffix}`,
-          worldtype: worldTypes[worldTypeIndex],
           worldtags: [worldTags[tag1Index], worldTags[tag2Index]]
         };
       }

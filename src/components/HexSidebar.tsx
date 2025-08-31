@@ -35,11 +35,6 @@ export const HexSidebar: React.FC<HexSidebarProps> = ({ selectedHex, onClose }) 
             </div>
             
             <div className="detail-section">
-              <h3 className="detail-label">WORLD TYPE</h3>
-              <p className="detail-value">{data.worldtype}</p>
-            </div>
-            
-            <div className="detail-section">
               <h3 className="detail-label">WORLD TAGS</h3>
               <div className="worldtags-list">
                 {data.worldtags?.map((tag, index) => (
