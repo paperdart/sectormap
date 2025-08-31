@@ -31,6 +31,7 @@ export async function generateHexData(sector: string): Promise<Record<string, He
   for (const x of coords) {
     for (const y of coords) {
       const key = `${x},${y}`;
+      // no planets on the borders
       if (x=='1' || x=='B' || y=='1' || y=='B')
       {}
       // 10% chance of having a planet
