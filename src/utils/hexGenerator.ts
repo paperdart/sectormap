@@ -15,6 +15,16 @@ export async function generateHexData(sector: string): Promise<Record<string, He
     planetNames = ['Alpha', 'Beta', 'Gamma', 'Delta', 'Epsilon'];
   }
 
+  // Load world tags
+  let worldTags: string[] = [];
+  try {
+    const response = await fetch('/worldtags.json');
+    worldTags = await response.json();
+  } catch (error) {
+    console.warn('Could not load world tags, using fallback');
+    worldTags = ['Trade Hub', 'Mining World', 'Agricultural', 'Industrial'];
+  }
+
   const worldTypes = ['Terran', 'Desert', 'Ocean', 'Ice', 'Volcanic', 'Gas Giant', 'Industrial', 'Agricultural'];
 
   // Generate data for 11x11 grid (1-9, A, B)
@@ -31,11 +41,20 @@ export async function generateHexData(sector: string): Promise<Record<string, He
         const suffix = rng.nextInt(1, 999);
         const worldTypeIndex = rng.nextInt(0, worldTypes.length - 1);
         
+        // Select 2 different world tags
+        const tag1Index = rng.nextInt(0, worldTags.length - 1);
+        let tag2Index = rng.nextInt(0, worldTags.length - 1);
+        // Ensure tags are different
+        while (tag2Index === tag1Index) {
+          tag2Index = rng.nextInt(0, worldTags.length - 1);
+        }
+        
         hexLookup[key] = {
           x,
           y,
           name: `${planetNames[nameIndex]}-${suffix}`,
-          worldtype: worldTypes[worldTypeIndex]
+          worldtype: worldTypes[worldTypeIndex],
+          worldtags: [worldTags[tag1Index], worldTags[tag2Index]]
         };
       }
     }

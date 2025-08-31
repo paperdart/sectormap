@@ -5,11 +5,13 @@ import { generateHexData } from '../utils/hexGenerator';
 import { NebulaBackground } from './NebulaBackground';
 import { generateNebulaBackground, NebulaLayer } from '../utils/nebulaGenerator';
 import { StarField } from './StarField';
+import { HexSidebar } from './HexSidebar';
 
 export const HoneycombGrid: React.FC = () => {
   const [hexData, setHexData] = useState<Record<string, HexData>>({});
   const [sector, setSector] = useState<string>('Delphi');
   const [nebulaLayers, setNebulaLayers] = useState<NebulaLayer[]>([]);
+  const [selectedHex, setSelectedHex] = useState<{ x: string; y: string; data?: HexData } | null>(null);
   const hexSize = 60;
   const gridSize = 11;
   
@@ -54,9 +56,13 @@ export const HoneycombGrid: React.FC = () => {
         const data = hexData[key];
         const { x, y } = calculateHexPosition(col, row);
         
+        const handleHexClick = () => {
+          setSelectedHex({ x: gridX, y: gridY, data });
+        };
+        
         hexagons.push(
           <g key={key} transform={`translate(${x}, ${y})`}>
-            <HexCell x={gridX} y={gridY} data={data} size={hexSize} />
+            <HexCell x={gridX} y={gridY} data={data} size={hexSize} onClick={handleHexClick} />
           </g>
         );
       }
@@ -74,7 +80,7 @@ export const HoneycombGrid: React.FC = () => {
   const totalHeight = gridHeight + (padding * 2);
 
   return (
-    <div className="honeycomb-container">
+    <div className="honeycomb-container" style={{ paddingRight: selectedHex ? '320px' : '0' }}>
       <NebulaBackground layers={nebulaLayers} />
       <StarField sector={sector} />
       <div className="scanlines"></div>
@@ -110,6 +116,11 @@ export const HoneycombGrid: React.FC = () => {
       <div className="grid-footer">
         <div className="status-line">MAP STATUS: RECENT DATA | SECTOR SIZE: 11x11</div>
       </div>
+      
+      <HexSidebar 
+        selectedHex={selectedHex} 
+        onClose={() => setSelectedHex(null)} 
+      />
     </div>
   );
 }

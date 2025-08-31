@@ -3,5 +3,6 @@ export interface HexData {
   y: string;
   name?: string;
   worldtype?: string;
+  worldtags?: string[];
   notes?: string;
 }

@@ -6,9 +6,10 @@ interface HexCellProps {
   y: string;
   data?: HexData;
   size: number;
+  onClick?: () => void;
 }
 
-export const HexCell: React.FC<HexCellProps> = ({ x, y, data, size }) => {
+export const HexCell: React.FC<HexCellProps> = ({ x, y, data, size, onClick }) => {
   const isPopulated = !!data;
   
   // Calculate hex points for SVG polygon
@@ -21,7 +22,7 @@ export const HexCell: React.FC<HexCellProps> = ({ x, y, data, size }) => {
   }
   
   return (
-    <g className="hex-cell">
+    <g className="hex-cell" onClick={onClick} style={{ cursor: 'pointer' }}>
       <polygon
         points={points.join(' ')}
         className={`hex-shape ${isPopulated ? 'hex-populated' : 'hex-empty'}`}
