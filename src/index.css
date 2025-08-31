@@ -337,20 +337,12 @@ body {
 
 .worldtag {
   display: inline-block;
-  background: rgba(0, 255, 65, 0.1);
-  border: 1px solid rgba(0, 255, 65, 0.3);
   color: #00ff41;
   padding: 6px 12px;
   border-radius: 4px;
   font-size: 0.8rem;
   letter-spacing: 0.5px;
   transition: all 0.3s ease;
-}
-
-.worldtag:hover {
-  background: rgba(0, 255, 65, 0.2);
-  border-color: #00ff41;
-  box-shadow: 0 0 8px rgba(0, 255, 65, 0.3);
 }
 
 .empty-hex {
