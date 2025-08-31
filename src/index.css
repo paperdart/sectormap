@@ -249,7 +249,7 @@ body {
   right: 0;
   width: 320px;
   height: 100vh;
-  background: rgba(0, 20, 0, 0.95);
+  background: rgba(0, 20, 0, 0.1);
   border-left: 2px solid #00ff41;
   backdrop-filter: blur(10px);
   z-index: 100;
