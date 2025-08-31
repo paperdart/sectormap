@@ -80,7 +80,7 @@ export const HoneycombGrid: React.FC = () => {
   const totalHeight = gridHeight + (padding * 2);
 
   return (
-    <div className="honeycomb-container" style={{ paddingRight: selectedHex ? '320px' : '0' }}>
+    <div className="honeycomb-container">
       <NebulaBackground layers={nebulaLayers} />
       <StarField sector={sector} />
       <div className="scanlines"></div>
