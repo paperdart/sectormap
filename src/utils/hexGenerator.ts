@@ -35,7 +35,7 @@ export async function generateHexData(sector: string): Promise<Record<string, He
       if (x=='1' || x=='B' || y=='1' || y=='B')
       {}
       // 20% chance of having a planet
-      else if (rng.nextBoolean(0.25)) {
+      else if (rng.nextBoolean(0.5)) {
         const nameIndex = rng.nextInt(0, planetNames.length - 1);
         const suffix = rng.nextInt(1, 999);
         
